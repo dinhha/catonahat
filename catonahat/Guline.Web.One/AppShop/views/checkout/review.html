@@ -1,0 +1,102 @@
+﻿
+<div ui-view="Review" class="checkout-preview">
+        <div class="text-center">
+            <p class="page-title">ORDER REVIEW</p>
+        </div>
+    <div class="col-md-offset-1 col-md-10 ">
+        <div class="col-md-12 checkout-review">
+            <div class="col-md-6">
+                <p class="text-left">
+                    <strong class="review-title">YOUR INFO</strong> 
+                </p>
+                <div class="col-md-12 review-info">
+                        <table class="table-responsive">
+                            <tr>
+                                <td width="30%"><label>NAME</label></td>
+                                <td class="vietnamese">{{user.FullName}}</td>
+                            </tr>
+                            <tr>
+                                <td width="30%"><label>PHONE NO .</label></td>
+                                <td style="letter-spacing:5px;">{{user.Phone}}</td>
+                            </tr>
+                            <tr>
+                                <td width="30%"><label>EMAIL</label></td>
+                                <td>{{user.Email}}</td>
+                            </tr>
+                            <tr>
+                                <td width="30%"><label>ADDDRESS</label></td>
+                                <td class="vietnamese">{{user.Address}}</td>
+                            </tr>
+                            <tr>
+                                <td width="30%"><label>CITY</label></td>
+                                <td class="vietnamese">{{user.Province}}</td>
+                            </tr>
+                            <tr>
+                                <td width="30%"><label>DISTRICT</label></td>
+                                <td class="vietnamese">{{user.District}}</td>
+                            </tr>
+                        </table>
+                </div>
+                <div class="clearfix"></div>
+                <p class="text-left">
+                    <strong class="review-title "> PAYMENT METHOD</strong>
+</p>
+                <div class="col-md-12 review-payment">
+                    <strong>{{paymentmethod}}</strong>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="text-left order-review">
+                    <strong class="review-title">ORDER #12456</strong>
+                </p>
+                <div class="order-item" ng-repeat="(key,value) in cart.List">
+                    <div class="col-md-6 p-left-0"><strong class="text-upper">#{{key+1}} {{value.Object.Title}}</strong></div>
+                    <div class="col-md-6 text-right p-right-0"><strong>{{value.Pricing | number}} đ</strong></div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-12">
+                        <div class="col-md-3"><a href="javascript:;" class="oder-review-option">Color: </a> {{value.Color}}</div>
+                        <div class="col-md-3"><a href="javascript:;" class="oder-review-option">Size: </a> {{value.Size}}</div>
+                        <div class="col-md-3"><a href="javascript:;" class="oder-review-option">Qty: </a> {{value.Quantity}}</div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-offset-2 col-md-10 p-left-0 p-right-0 order-review-shipfee">
+                    <div class="col-md-8 p-left-0">
+                        <select ng-model="shipping" ng-change="changfee(shipping)" ng-init="shipping='incity'">
+                            <option value="incity">Ship in Ho Chi Minh City</option>
+                            <option value="outcity">Ship out Ho Chi Minh City</option>
+                        </select>
+                     
+                    </div>
+                    <div class="col-md-4 text-right p-right-0">
+                        <strong>{{shippingfee |number}} đ </strong>
+                    </div>
+                   <div class="clearfix"></div>
+                    
+                </div>
+                <div class="col-md-offset-2 col-md-10 order-review-total p-left-0 p-right-0">
+                    <div class="col-md-4 p-left-0">
+                        <strong> TOTAL COST </strong>
+                    </div>
+                    <div class="col-md-8 text-right p-right-0">
+                        <strong class="sale-text">{{cart.TotalAmount + shippingfee |number}} đ </strong>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 checkout-foot p-left-0">
+            <div class="col-md-6 p-left-0">
+                <a href="/bag">
+                    <img src="../../../Images/button-backToYourBag.png" />
+                </a>
+            </div>
+            <div class="col-md-6 text-right p-right-0">
+                <a href="javascript:;" ng-click="order()">
+                    <img src="../../../Images/button-placeOrderNow.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

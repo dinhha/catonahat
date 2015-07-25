@@ -1,0 +1,27 @@
+﻿<ol class="breadcrumb">
+    <li><a ui-sref="main.admin.home" class="active">Trang chủ</a></li>
+    <li><span>Payment Method</span></li>
+</ol>
+<div class="clearfix"></div>
+<div style="padding:10px;">
+    <div class="clearfix"></div>
+    <div class="col-md-12">
+        <div class="clearfix"></div>
+        <h4>Payment Method</h4>
+        <div>
+            <form name="frmobject" accept-charset="UTF-8" role="form">
+                <div class="form-group">
+                    <textarea ckeditor="editorOptions" ng-model="AboutUs" id="editor" name="about" ng-disabled="running" ng-required="true"></textarea>
+                </div>
+                
+                <div class="clearfix"></div>
+                <div>
+                    <button type="submit" ng-class="{'m-progress':running}" ng-disabled="frmobject.$invalid||running" class="pull-right btn btn-success" ng-click="ok()"><span>Lưu</span></button>
+                </div>
+               
+            </form>
+</div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

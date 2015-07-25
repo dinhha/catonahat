@@ -1,0 +1,32 @@
+﻿<div class="v-line" style="background-color:#000000"></div>
+<div class="container">
+    <div ui-view="vTop" class="row">
+    </div>
+    <div class="clearfix"></div>
+    <div ui-view="vNav" class="row">
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" style="min-height:500px">
+        <div ui-view="vContent" >
+
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="clearfix"></div>
+          <div flash-alert="error" active-class="in alert-flash" class="fade">
+              <button type="button" class="close" ng-click="hide()">&times;</button>
+              <strong class="alert-heading">Notify !</strong>
+              <span class="alert-message">{{flash.message}}</span>
+          </div>
+
+          <div flash-alert="success" active-class="in alert-flash" class="fade ">
+              <button type="button" class="close" ng-click="hide()">&times;</button>
+              <strong class="alert-heading">Notify !</strong>
+              <span class="alert-message">{{flash.message}}</span>
+          </div>
+    <div ui-view="vBottom">
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,57 @@
+﻿<div class="clearfix"></div>
+<div style="padding:10px;">
+    <div class="clearfix"></div>
+    <div class="col-md-12">
+        <div class="clearfix"></div>
+        <h4>HistoryOrder</h4>
+        <div class="clearfix"></div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>OrderCode</th>
+                    <th>PaymentMethod</th>
+                    <th>NumofProduct</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat ="item in data.Items">
+                <tr ng-click="showRow[item.ID] = !showRow[item.ID]">
+                    <td>{{item.gFullName}}</td>
+                    <td>{{item.gPhone}}</td>
+                    <td>{{item.gAddress}}</td>
+
+                    <td>{{item.gOrderCode}}</td>
+                    <td>{{item.gPaymentType}}</td>
+                    <td>{{item.gOrderDetails.length}}</td>
+
+                </tr>
+                <tr ng-show="showRow[item.ID]" class="childrow">
+                    <th></th>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+                <tr ng-repeat="child in item.gOrderDetails" ng-show="showRow[item.ID]" class="childrow">
+                    <td></td>
+                    <td>{{child.Name}}</td>
+                    <td>{{child.gColor}}</td>
+                    <td>{{child.gSize}}</td>
+                    <td>{{child.gQuantity}}</td>
+                    <td>{{child.gPrice}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="clearfix"></div>
+        <p ng-bind-html="msg"></p>
+        <div class="clearfix"></div>
+        <a class="btn btn-facebook" ng-click="ok(data)">Lưu thông tin</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="clearfix"></div>

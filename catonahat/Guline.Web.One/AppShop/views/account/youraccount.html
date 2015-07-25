@@ -1,0 +1,266 @@
+﻿
+<div ui-view="Account" class="col-md-12">
+    <div class="account ">
+        <div class="text-center">
+            <p class="page-title">MY ACCOUNT</p>
+        </div>
+        <div class="col-md-offset-1 col-md-10 account-box p-left-0 p-right-0">
+          <div class="col-md-4 p-left-0">
+              <ul class="account-group">
+                  <li class="account-group-item" ng-class="{'active': accountactive}" ng-click="activeli('account')" ng-init="activeli('account')">
+                      <a href="#"> <strong> ACCOUNT DASHBOARD </strong></a>
+                  </li>
+                  <li class="account-group-item" ng-class="{'active': infoactive}" ng-click="activeli('info')">
+                      <a href="#"> <strong> CONTACT INFORMATION </strong></a>
+                  </li>
+                  <li class="account-group-item" ng-class="{'active': orderactive}" ng-click="activeli('order')">
+                      <a href="#">  <strong> MY ORDERS </strong></a>
+                  </li>
+              </ul>
+          </div>
+          <div class="col-md-8 p-right-0">
+              <div class="col-md-12" ng-show="accountactive">
+                  <p class="account-title"><strong>HELLO, {{accountinfo.FullName}} </strong></p>
+                  <p>You can update you contact information and view your order (We recorded your 5 lastest order)</p>
+                  <div class="clearfix"></div>
+                  <div class="col-md-6 p-left-0">
+                      <p class="account-dashboard-title"><strong>CONTACT INFORMATION</strong></p>
+                        <p>{{accountinfo.FullName}}</p>
+                      <p>{{accountinfo.Email}}</p>
+                      <br />
+                      <a href="javascript:;" class="account-btn-change-password" ng-click="activeli('info')"><strong>CHANGE PASSWORD</strong></a>
+                  </div>
+                  <div class="col-md-6 p-right-0">
+                      <p class="account-dashboard-title"><strong>MY ORDERS</strong></p>
+                      
+                      <p ng-repeat="(key,order) in acountorder.Items"><strong class="letter-p-5" ng-if="key<2">#{{order.gOrderCode}}</strong></p>
+                      <br />
+                      <a href="javascript:;" ng-show="acountorder.Items.length>0" class="account-btn-change-password" ng-click="activeli('order')"><strong>VIEW MY ODERS</strong></a>
+                  </div>
+              </div>
+              <div class="col-md-12" ng-show="infoactive">
+                  <p class="account-title"><strong>CONTACT INFORMATION </strong></p>
+                  <div class="col-md-12 account-info-box">
+                      <form name="frmfunc" accept-charset="UTF-8" role="form">
+                          <table class="table-responsive table-xs-border">
+                              <tr>
+                                  <td width="40%">
+                                      <strong>NAME * </strong>
+                                  </td>
+                                  <td width="60%">
+                                      <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.FullName.$valid,'has-error': frmfunc.FullName.$invalid&&frmfunc.FullName.$dirty}">
+                                          <input name="FullName" ng-model="accountinfo.FullName" type="text" class="form-control" required />
+                                          <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.FullName.$invalid}"></span>
+                                          <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.FullName.$invalid && frmfunc.FullName.$dirty"></span>
+                                          <span class="text-danger" ng-show="frmfunc.FullName.$invalid">
+                                              <span ng-show="frmfunc.FullName.$touched && frmfunc.FullName.$error.required"><span>Please input your name</span></span>
+                                          </span>
+                                      </div>
+                                      
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%"></td>
+                                  <td width="60%">
+                                      <div class="col-md-6 p-top-10">
+                                          <input type="radio" ng-model="accountinfo.Gender" name="gender" value="Nam" /><strong> MALE</strong>
+                                      </div>
+                                      <div class="col-md-6 p-top-10">
+                                          <input type="radio" ng-model="accountinfo.Gender" name="gender" value="Nu" /><strong> FEMALE</strong>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%">
+                                      <strong>EMAIL * </strong>
+                                  </td>
+                                  <td width="60%">
+                                      <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.Email.$valid,'has-error': frmfunc.Email.$invalid&&frmfunc.Email.$dirty}">
+                                          <input type="email" validate-email ng-model="accountinfo.Email" class="form-control" name="Email" required />
+                                          <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.Email.$invalid}"></span>
+                                          <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.Email.$invalid && frmfunc.Email.$dirty"></span>
+                                          <span class="text-danger" ng-show="frmfunc.Email.$invalid">
+                                              <span ng-show="frmfunc.Email.$touched && frmfunc.Email.$error.required"><span>Please input your email</span></span>
+                                          </span>
+                                          <span class="help-block" ng-show="frmfunc.Email.$error.email">Please input the valid email.</span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%">
+                                      <strong>PHONE NO. * </strong>
+                                  </td>
+                                  <td width="60%">
+                                      <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.Phone.$valid,'has-error': frmfunc.Phone.$invalid&&frmfunc.Phone.$dirty}">
+                                          <input type="text" ng-model="accountinfo.Phone" class="form-control" name="Phone" required />
+                                          <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.Phone.$invalid}"></span>
+                                          <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.Phone.$invalid && frmfunc.Phone.$dirty"></span>
+                                          <span class="text-danger" ng-show="frmfunc.Phone.$invalid">
+                                              <span ng-show="frmfunc.Phone.$touched && frmfunc.Phone.$error.required"><span>Please input your phone</span></span>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%">
+                                      <strong>ADDRESS * </strong>
+                                  </td>
+                                  <td width="60%">
+                                      <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.Address.$valid,'has-error': frmfunc.Address.$invalid&&frmfunc.Address.$dirty}">
+                                          <input type="text" ng-model="accountinfo.Address" class="form-control" name="Address" required />
+                                          <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.Address.$invalid}"></span>
+                                          <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.Address.$invalid && frmfunc.Address.$dirty"></span>
+                                          <span class="text-danger" ng-show="frmfunc.Address.$invalid">
+                                              <span ng-show="frmfunc.Address.$touched && frmfunc.Address.$error.required"><span>Please input your address</span></span>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%">
+                                      <strong>CITY * </strong>
+                                  </td>
+                                  <td width="60%">
+                                      <input disabled="disabled" name="name" ng-model="accountinfo.Province" type="text" class="form-control" />
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%">
+                                      <strong>DISTRICT * </strong>
+                                  </td>
+                                  <td width="60%">
+                                      <input disabled="disabled" name="name" ng-model="accountinfo.District" type="text" class="form-control" />
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%"></td>
+                                  <td width="60%">
+                                      <p class="p-top-10">
+                                          <strong class="p-right-10">CHANGE PASSWORD</strong> <input type="checkbox" ng-model="changepass" name="changepass" />
+                                      </p>
+                                  </td>
+                              </tr>
+                              <tr ng-show="changepass">
+                                  <td width="40%">
+                                      <strong>OLD PASSWORD *</strong>
+                                  </td>
+                                  <td width="60%">
+                                      <p class="p-top-10">
+                                          <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.Password.$valid,'has-error': frmfunc.Password.$invalid&&frmfunc.Password.$dirty}">
+                                              <input type="password" ng-model="accountinfo.Password" class="form-control" name="Password" ng-required="changepass" />
+                                              <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.Password.$invalid}"></span>
+                                              <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.Password.$invalid && frmfunc.Password.$dirty"></span>
+                                              <span class="text-danger" ng-show="frmfunc.Password.$invalid">
+                                                  <span ng-show="frmfunc.Password.$touched && frmfunc.Password.$error.required"><span>Please input your old password</span></span>
+                                              </span>
+                                          </div>
+                                          <!--<input name="oldpass" ng-model="accountinfo.Password" type="text" class="form-control" />-->
+                                      </p>
+                                  </td>
+                              </tr>
+                              <tr ng-show="changepass">
+                                  <td width="40%">
+                                      <strong>NEW PASSWORD *</strong>
+                                  </td>
+                                  <td width="60%">
+                                      <p class="p-top-10">
+                                          
+                                          <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.NewPassword.$valid,'has-error': frmfunc.NewPassword.$invalid&&frmfunc.NewPassword.$dirty}">
+                                              <input type="password" ng-minlength="6"  name="NewPassword" ng-model="accountinfo.NewPassword" class="form-control" ng-required="changepass" />
+                                              <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.NewPassword.$invalid}"></span>
+                                              <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.NewPassword.$invalid && frmfunc.NewPassword.$dirty"></span>
+                                              <span class="text-danger" ng-show="frmfunc.NewPassword.$invalid">
+                                                  <span ng-show="frmfunc.NewPassword.$touched && frmfunc.NewPassword.$error.required"><span>Please input your new password</span></span>
+                                              </span>
+                                              <span class="help-block" ng-show="(frmfunc.NewPassword.$error.minlength) &&(frmfunc.NewPassword.$dirty)">Min length is 6.</span>
+                                          </div>
+                                      </p>
+                                  </td>
+                              </tr>
+                              <tr ng-show="changepass">
+                                  <td width="40%">
+                                      <strong>CONFIRM NEW PASSWORD *</strong>
+                                  </td>
+                                  <td width="60%">
+                                      <p class="p-top-10">
+                                          <div class="form-group has-feedback" ng-class="{ 'has-success' : frmfunc.ReNewPassword.$valid,'has-error': frmfunc.ReNewPassword.$invalid&&frmfunc.ReNewPassword.$dirty}">
+                                              <input data-ng-match="accountinfo.NewPassword" ng-minlength="6" name="ReNewPassword" ng-model="accountinfo.ReNewPassword" type="password" class="form-control" ng-required="changepass" />
+                                              <span class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'hide':frmfunc.ReNewPassword.$invalid}"></span>
+                                              <span class="glyphicon glyphicon-warning-sign form-control-feedback" ng-show="frmfunc.ReNewPassword.$invalid ||frmfunc.ReNewPassword.$error.match && frmfunc.ReNewPassword.$dirty"></span>
+                                              <span class="text-danger" ng-show="frmfunc.ReNewPassword.$invalid">
+                                                  <span ng-show="frmfunc.ReNewPassword.$touched && frmfunc.ReNewPassword.$error.required"><span>Please input your Repeat Newpassword</span></span>
+                                              </span>
+                                              <span class="help-block" ng-show="(frmfunc.ReNewPassword.$error.minlength) &&(frmfunc.ReNewPassword.$dirty)">Min length is 6.</span>
+                                              <span class="help-block" ng-show="(frmfunc.ReNewPassword.$error.match) &&(frmfunc.ReNewPassword.$dirty)">Repeat  Newpassword is not match</span>
+                                          </div>
+                                       
+                                      </p>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td width="40%"></td>
+                                  <td width="60%">
+                                      <div class="text-right p-top-10">
+                                          <a href="javascript:;" ng-click="saveInfo()" ng-if="frmfunc.$valid">
+                                              <img src="../../../Images/button-save.png" />
+                                          </a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </table>
+                      </form>
+                  </div>
+              </div>
+              <div class="col-md-12" ng-show="orderactive">
+                  <p class="account-title"><strong>MY ORDERS </strong></p>
+                  <div ng-show="acountorder.Items.length==0" class="order-not-found">
+                      No orders found.You have not make an order yet. You want to make one now? <a ui-sref="main.home.index" class="order-browser">Browse our product</a>
+                  </div>
+                  <div ng-repeat="item in acountorder.Items">
+                      <div class="account-order-item col-md-12">
+                          <div class="col-md-12 account-order-item-head">
+                              <div class="col-md-8 p-left-0">
+                                  <p><strong>ORDER #{{item.gOrderCode}}</strong></p>
+                              </div>
+                              <div class="col-md-4 p-right-0 text-right">
+                                  <img class="show-detail-order-icon" ng-show="!show[item.ID]" ng-click="showdetail(item.ID)" src="../../../Images/icon-search-expand.png" />
+                                  <img class="show-detail-order-icon" ng-show="show[item.ID]" ng-click="showdetail(item.ID)" src="../../../Images/icon-search-shortten.png" />
+                              </div>
+                          </div>
+                          <div class="col-md-12 account-order-item-type">
+                              <div class="col-md-offset-6 col-md-6 p-right-0 text-right ">
+                                  <div class="col-md-6">
+                                      <strong>TOTAL COST</strong>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <strong class="sale-text">{{item.gTotalPrice|number}} đ </strong>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="col-md-12 details animate-show" ng-show="show[item.ID]">
+                          <div class="order-item col-md-12" ng-repeat="child in item.gOrderDetails">
+                              <div class="col-md-6 p-left-0"><strong class="text-upper">#1 {{child.Name}}</strong></div>
+                              <div class="col-md-6 text-right p-right-0"><strong>{{child.gPrice |number}} đ</strong></div>
+                              <div class="clearfix"></div>
+                              <div class="col-md-12">
+                                  <div class="col-md-3"><a href="javascript:;" class="oder-review-option">Color: </a> {{child.gColor}}</div>
+                                  <div class="col-md-3"><a href="javascript:;" class="oder-review-option">Size: </a> {{child.gSize}}</div>
+                                  <div class="col-md-3"><a href="javascript:;" class="oder-review-option">Qty: </a> {{child.gQuantity}}</div>
+                                  <div class="col-md-3"></div>
+                              </div>
+                              <div class="clearfix"></div>
+                          </div>
+                          <div class=" order-item col-md-12 text-right">
+                              <strong> Shipping Fee :{{item.ShippingFee |number }} đ </strong>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

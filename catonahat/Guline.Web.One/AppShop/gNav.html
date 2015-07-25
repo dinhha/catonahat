@@ -1,0 +1,30 @@
+﻿<div class="clearfix">
+</div>
+<div>
+    <div class="rows">
+        <div class="col-md-6 text-md-left text-xs-left">
+            <div class="menu">
+                <ul class="list-inline menu-icon">
+                    <li class="home active" ng-mouseenter="showtext('ALL ITEMS',home)" ng-mouseleave="defauttext()" ng-click="showitem('ALL ITEMS','home')">
+                        <a href="/">
+
+                        </a>
+                    </li>
+                    <li class="{{item.Slug}}" ng-repeat="item in menu" ng-mouseenter="showtext(item.Title,item.Slug)" ng-mouseleave="defauttext(item.Slug)" ng-click="showitem(item.Title,item.Slug,item.ID)">
+                        <a href="#">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 text-md-right text-xs-center">
+            <!--<strong>{{cat_text}}</strong>-->
+            <div ng-bind-html="cat_text">
+            </div>
+        </div>
+    </div>
+ 
+</div>
+<div class="clearfix">
+</div>
